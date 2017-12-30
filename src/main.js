@@ -23,7 +23,6 @@ const animateSnake=function() {
 }
 
 const changeSnakeDirection=function(event) {
-  console.log(event.code);
   switch (event.code) {
     case "KeyA":
       game.turnLeft();
@@ -45,7 +44,10 @@ const changeSnakeDirection=function(event) {
       break;
     case "ArrowLeft":
       game.goWest();
-      break; 
+      break;
+    case "KeyW":
+      animateSnake();
+      break;
     default:
   }
 }
