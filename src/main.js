@@ -2,6 +2,7 @@ let snake=undefined;
 let food=undefined;
 let numberOfRows=60;
 let numberOfCols=120;
+let score = 0;
 
 let animator=undefined;
 
@@ -13,6 +14,7 @@ const animateSnake=function() {
   unpaintSnake(oldTail);
   paintHead(head);
   if(head.isSameCoordAs(food)) {
+    increaseScore();
     snake.grow();
     createFood(numberOfRows,numberOfCols);
     drawFood(food);
@@ -52,6 +54,11 @@ const createSnake=function() {
 
 const createFood=function(numberOfRows,numberOfCols) {
   food=generateRandomPosition(numberOfCols,numberOfRows);
+}
+
+const increaseScore=function(){
+  score+=10;
+  document.querySelector('#score').innerText = score;
 }
 
 const startGame=function() {
