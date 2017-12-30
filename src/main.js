@@ -66,7 +66,7 @@ const increaseScore=function(){
 
 const snakeHitWall=function(snake){
   let block = snake.head;
-  return block.x<0||block.y<0||block.x>numberOfCols||block.y>numberOfRows;
+  return block.x<0||block.y<0||block.x>numberOfCols-1||block.y>numberOfRows-1;
 }
 
 const gameOver = function(snake){
