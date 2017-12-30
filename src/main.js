@@ -75,8 +75,7 @@ const gameOver = function(snake){
 
 const newGame=function(){
   clearInterval(animator);
-  document.write("<h1>GAME OVER!<h1> <p><button onclick=window.location.reload()>Play again</button><p>")
-  //should give a button to let player play again.
+  document.write("<h1>GAME OVER!<h1> <p><button onclick=window.location.reload()>Play again</button><p>");
 }
 
 const startGame=function() {
