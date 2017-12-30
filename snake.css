@@ -27,3 +27,7 @@
 div{
   display:inline;
 }
+.super-food {
+  background-color: green;
+  border-radius: 50%;
+}
