@@ -66,6 +66,10 @@ const snakeHitWall=function(snake){
   return block.x<0||block.y<0||block.x>numberOfCols||block.y>numberOfRows;
 }
 
+const gameOver = function(snake){
+  return snakeHitWall(snake)||snake.hitItself();
+}
+
 const startGame=function() {
   createSnake();
   drawGrids(numberOfRows,numberOfCols);
