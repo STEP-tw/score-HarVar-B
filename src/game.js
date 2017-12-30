@@ -69,3 +69,23 @@ Game.prototype.updateScore=function(){
   let score = this.getScore();
   document.querySelector('#score').innerText = score;
 }
+
+Game.prototype.goNorth=function(){
+  if(!this.snake.isGoingSouth())
+  {return this.snake.goNorth();}
+}
+
+Game.prototype.goEast=function(){
+  if(!this.snake.isGoingWest())
+  {return this.snake.goEast();}
+}
+
+Game.prototype.goSouth=function(){
+  if(!this.snake.isGoingNorth())
+  {return this.snake.goSouth();}
+}
+
+Game.prototype.goWest=function(){
+  if(!this.snake.isGoingEast())
+  {return this.snake.goWest();}
+}

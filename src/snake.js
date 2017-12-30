@@ -31,5 +31,29 @@ Snake.prototype={
     let sBody = this.body;
     let result=sBody.some(function(other){return sHead.isSameCoordAs(other)});
     return result;
+  },
+  isGoingSouth:function(){
+    return this.head.getDirection()=="south";
+  },
+  isGoingWest:function(){
+    return this.head.getDirection()=="west";
+  },
+  isGoingEast:function(){
+    return this.head.getDirection()=="east";
+  },
+  isGoingNorth:function(){
+    return this.head.getDirection()=="north";
+  },
+  goNorth:function(){
+    this.head=this.head.goNorth();
+  },
+  goEast:function(){
+    this.head=this.head.goEast();
+  },
+  goSouth:function(){
+    this.head=this.head.goSouth();
+  },
+  goWest:function(){
+    this.head=this.head.goWest();
   }
 }

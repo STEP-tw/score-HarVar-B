@@ -49,3 +49,20 @@ const generateRandomPosition=function(maxX,maxY) {
   let direction=randomDirection();
   return new Position(x,y,direction);
 }
+
+Position.prototype.goNorth=function(){
+  return new Position(this.x,this.y,"north");
+}
+Position.prototype.goEast=function(){
+  return new Position(this.x,this.y,"east");
+}
+Position.prototype.goSouth=function(){
+  return new Position(this.x,this.y,"south");
+}
+Position.prototype.goWest=function(){
+  return new Position(this.x,this.y,"west");
+}
+
+Position.prototype.getDirection=function(){
+  return this.direction;
+}
