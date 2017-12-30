@@ -19,6 +19,9 @@ const animateSnake=function() {
     createFood(numberOfRows,numberOfCols);
     drawFood(food);
   }
+  if(gameOver(snake)){
+    newGame();
+  }
 }
 
 const changeSnakeDirection=function(event) {
@@ -68,6 +71,12 @@ const snakeHitWall=function(snake){
 
 const gameOver = function(snake){
   return snakeHitWall(snake)||snake.hitItself();
+}
+
+const newGame=function(){
+  clearInterval(animator);
+  document.write("GAME OVER!")
+  //should give a button to let player play again.
 }
 
 const startGame=function() {
