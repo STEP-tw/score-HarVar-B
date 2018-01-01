@@ -48,6 +48,12 @@ const changeSnakeDirection=function(event) {
     case "KeyW":
       animateSnake();
       break;
+    case "KeyP":
+      clearInterval(animator);
+      break;
+    case "KeyR":
+    animator=setInterval(animateSnake,140);
+    break; 
     default:
   }
 }
