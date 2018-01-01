@@ -67,7 +67,7 @@ Game.prototype.getScore=function(){
 
 Game.prototype.updateScore=function(){
   let score = this.getScore();
-  document.querySelector('#score').innerText = score;
+  document.querySelector('#scoreValue').innerText = score;
 }
 
 Game.prototype.goNorth=function(){

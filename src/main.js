@@ -12,7 +12,7 @@ const animateSnake=function() {
   paintHead(details.head);
   if(game.hasSnakeEatenFood()) {
     game.increaseScore();
-    game.updateScore();
+    updateScore();
     game.grow();
     game.createFood();
     drawFood(game.getFood());
@@ -53,7 +53,7 @@ const changeSnakeDirection=function(event) {
       break;
     case "KeyR":
     animator=setInterval(animateSnake,140);
-    break; 
+    break;
     default:
   }
 }
@@ -79,6 +79,10 @@ const createFood=function(numberOfRows,numberOfCols) {
   food=generateRandomPosition(numberOfCols,numberOfRows);
 }
 
+updateScore=function(){
+  let score = game.getScore();
+  document.querySelector('#scoreValue').innerText = score;
+}
 
 const snakeHitWall=function(snake){
   let block = snake.head;
