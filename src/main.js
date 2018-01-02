@@ -17,7 +17,7 @@ const animateSnake=function() {
     game.createFood();
     drawFood(game.getFood());
   }
-  if(gameOver(snake)){
+  if(game.gameOver()){
     newGame();
   }
 }
@@ -87,10 +87,6 @@ updateScore=function(){
 const snakeHitWall=function(snake){
   let block = snake.head;
   return block.x<0||block.y<0||block.x>numberOfCols-1||block.y>numberOfRows-1;
-}
-
-const gameOver = function(snake){
-  return snakeHitWall(snake)||snake.hitItself();
 }
 
 const newGame=function(){

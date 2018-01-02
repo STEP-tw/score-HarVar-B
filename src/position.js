@@ -5,6 +5,13 @@ const randomDirection=function() {
   return _directions[index];
 }
 
+const generateRandomPosition=function(maxX,maxY) {
+  let x=generateRandomNumberBetween(0,maxX);
+  let y=generateRandomNumberBetween(0,maxY);
+  let direction=randomDirection();
+  return new Position(x,y,direction);
+}
+
 const Position=function(x,y,direction) {
   this.x=x;
   this.y=y;
@@ -41,13 +48,6 @@ Position.prototype.isSameCoordAs=function(other) {
 
 Position.prototype.getCoord=function() {
   return [this.x,this.y];
-}
-
-const generateRandomPosition=function(maxX,maxY) {
-  let x=generateRandomNumberBetween(0,maxX);
-  let y=generateRandomNumberBetween(0,maxY);
-  let direction=randomDirection();
-  return new Position(x,y,direction);
 }
 
 Position.prototype.goNorth=function(){

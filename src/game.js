@@ -6,6 +6,18 @@ const Game=function(topLeft,bottomRight) {
   this.food={};
 }
 
+Game.prototype.snakeHitWall = function () {
+  let result = undefined;
+  let sHeadCoOrd = snake.getHead().getCoord();
+  let topLeft = this.topLeft;
+  let bottomRight = this.bottomRight;
+  // console.log("topLeft :",this.topLeft);
+  result = sHeadCoOrd[0]<topLeft.x||sHeadCoOrd[1]<topLeft.y;
+  // console.log("bottomRight :",this.bottomRight);
+  result = result || sHeadCoOrd[0]>bottomRight.x || sHeadCoOrd[1]>bottomRight.y;
+  return result;
+};
+
 Game.prototype.addSnake=function(snake) {
   this.snake=snake;
 }
@@ -61,13 +73,9 @@ Game.prototype.createFood=function() {
 Game.prototype.increaseScore=function(){
   this.score+=10;
 }
+
 Game.prototype.getScore=function(){
   return this.score;
-}
-
-Game.prototype.updateScore=function(){
-  let score = this.getScore();
-  document.querySelector('#scoreValue').innerText = score;
 }
 
 Game.prototype.goNorth=function(){
@@ -88,4 +96,8 @@ Game.prototype.goSouth=function(){
 Game.prototype.goWest=function(){
   if(!this.snake.isGoingEast())
   {return this.snake.goWest();}
+}
+
+Game.prototype.gameOver = function(){
+  return game.snakeHitWall(this.snake)|| this.snake.hitItself();
 }
