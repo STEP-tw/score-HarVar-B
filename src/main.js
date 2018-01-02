@@ -79,11 +79,6 @@ const createFood=function(numberOfRows,numberOfCols) {
   food=generateRandomPosition(numberOfCols,numberOfRows);
 }
 
-updateScore=function(){
-  let score = game.getScore();
-  document.querySelector('#scoreValue').innerText = score;
-}
-
 const snakeHitWall=function(snake){
   let block = snake.head;
   return block.x<0||block.y<0||block.x>numberOfCols-1||block.y>numberOfRows-1;
@@ -93,6 +88,7 @@ const newGame=function(){
   clearInterval(animator);
   document.write("<h1>GAME OVER!<h1> <p><button onclick=window.location.reload()>Play again</button><p>");
 }
+
 const createGame=function() {
   let topLeft=new Position(0,0,"east");
   let bottomRight=new Position(numberOfCols,numberOfRows,"east");
