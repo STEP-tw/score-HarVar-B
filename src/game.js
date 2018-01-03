@@ -14,9 +14,15 @@ Game.prototype.snakeHitWall = function () {
   // console.log("topLeft :",this.topLeft);
   result = sHeadCoOrd[0]<topLeft.x||sHeadCoOrd[1]<topLeft.y;
   // console.log("bottomRight :",this.bottomRight);
-  result = result || sHeadCoOrd[0]>bottomRight.x || sHeadCoOrd[1]>bottomRight.y;
+  result = result || sHeadCoOrd[0]>bottomRight.x-1 || sHeadCoOrd[1]>bottomRight.y-1;
   return result;
 };
+
+Game.prototype.snakeHitMaze = function(maze){
+  return maze.some(function(pos){
+    return pos.isSameCoordAs(this.snake.getHead());
+  })
+}
 
 Game.prototype.addSnake=function(snake) {
   this.snake=snake;
@@ -58,8 +64,16 @@ Game.prototype.hasSnakeEatenFood=function() {
 
 Game.prototype.createFood=function() {
   console.log(this.bottomRight);
-  let position=generateRandomPosition(this.bottomRight.x,this.bottomRight.y);
-
+  let position = undefined;
+  do{
+    position=generateRandomPosition(this.bottomRight.x,this.bottomRight.y);
+  }
+  while(this.snake.getBody().some(function(part){
+    return position.isSameCoordAs(part);
+  })
+  || maze222.some(function(part){
+    return position.isSameCoordAs(part);
+  }))
   let random=generateRandomNumberBetween(0,10);
   let growthFactor=1;
   let superFood=false;
@@ -99,5 +113,7 @@ Game.prototype.goWest=function(){
 }
 
 Game.prototype.gameOver = function(){
-  return game.snakeHitWall(this.snake)|| this.snake.hitItself();
+  let result=game.snakeHitWall(this.snake)|| this.snake.hitItself();
+  result = result || game.snakeHitMaze(maze222);
+  return result;
 }

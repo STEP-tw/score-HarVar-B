@@ -16,6 +16,10 @@
   background-color: black;
 }
 
+.maze {
+  background-color: purple;
+}
+
 .snake_head {
   background-color: red;
 }

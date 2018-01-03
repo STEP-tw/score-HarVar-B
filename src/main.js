@@ -75,10 +75,6 @@ const createSnake=function() {
   game.addSnake(snake);
 }
 
-const createFood=function(numberOfRows,numberOfCols) {
-  food=generateRandomPosition(numberOfCols,numberOfRows);
-}
-
 const snakeHitWall=function(snake){
   let block = snake.head;
   return block.x<0||block.y<0||block.x>numberOfCols-1||block.y>numberOfRows-1;
@@ -99,11 +95,12 @@ const startGame=function() {
   createGame();
   createSnake();
   drawGrids(numberOfRows,numberOfCols);
+  drawMaze(maze222);
   drawSnake(game.getSnake());
   game.createFood();
   drawFood(game.getFood());
   addKeyListener();
-  animator=setInterval(animateSnake,140);
+  animator=setInterval(animateSnake,120);
 }
 
 window.onload=startGame;
