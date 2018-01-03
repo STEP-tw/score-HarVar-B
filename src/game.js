@@ -6,22 +6,65 @@ const Game=function(topLeft,bottomRight) {
   this.food={};
 }
 
-Game.prototype.snakeHitWall = function () {
-  let result = undefined;
-  let sHeadCoOrd = snake.getHead().getCoord();
-  let topLeft = this.topLeft;
-  let bottomRight = this.bottomRight;
-  // console.log("topLeft :",this.topLeft);
-  result = sHeadCoOrd[0]<topLeft.x||sHeadCoOrd[1]<topLeft.y;
-  // console.log("bottomRight :",this.bottomRight);
-  result = result || sHeadCoOrd[0]>bottomRight.x-1 || sHeadCoOrd[1]>bottomRight.y-1;
-  return result;
-};
-
 Game.prototype.snakeHitMaze = function(maze){
   return maze.some(function(pos){
     return pos.isSameCoordAs(this.snake.getHead());
   })
+}
+
+Game.prototype.snakeHitNorth = function(){
+  let sHead = this.snake.getHead();
+  let sHeadCoOrd = sHead.getCoord();
+  console.log(sHeadCoOrd);
+  let sHeadDirection = sHead.getDirection();
+  console.log(sHeadDirection);
+  let arenaHeight = this.bottomRight.getY();
+  if(sHeadCoOrd[1]<0){
+    this.snake.setHead(new Position(sHeadCoOrd[0],sHeadCoOrd[1]+arenaHeight,sHeadDirection));
+  }
+}
+
+Game.prototype.snakeHitSouth = function(){
+  let sHead = this.snake.getHead();
+  let sHeadCoOrd = sHead.getCoord();
+  console.log(sHeadCoOrd);
+  let sHeadDirection = sHead.getDirection();
+  console.log(sHeadDirection);
+  let arenaHeight = this.bottomRight.getY();
+  if(sHeadCoOrd[1]>arenaHeight){
+    this.snake.setHead(new Position(sHeadCoOrd[0],sHeadCoOrd[1]-arenaHeight-1,sHeadDirection));
+  }
+}
+
+Game.prototype.snakeHitEast = function(){
+  let sHead = this.snake.getHead();
+  let sHeadCoOrd = sHead.getCoord();
+  console.log(sHeadCoOrd);
+  let sHeadDirection = sHead.getDirection();
+  console.log(sHeadDirection);
+  let arenaWidth = this.bottomRight.getX();
+  if(sHeadCoOrd[0]>arenaWidth){
+    this.snake.setHead(new Position(sHeadCoOrd[0]-arenaWidth-1,sHeadCoOrd[1],sHeadDirection));
+  }
+}
+
+Game.prototype.snakeHitWest = function(){
+  let sHead = this.snake.getHead();
+  let sHeadCoOrd = sHead.getCoord();
+  console.log(sHeadCoOrd);
+  let sHeadDirection = sHead.getDirection();
+  console.log(sHeadDirection);
+  let arenaWidth = this.bottomRight.getX();
+  if(sHeadCoOrd[0]<0){
+    this.snake.setHead(new Position(sHeadCoOrd[0]+arenaWidth,sHeadCoOrd[1],sHeadDirection));
+  }
+}
+
+Game.prototype.isSnakeOutOfArena=function(){
+  this.snakeHitNorth();
+  this.snakeHitSouth();
+  this.snakeHitWest();
+  this.snakeHitEast();
 }
 
 Game.prototype.addSnake=function(snake) {

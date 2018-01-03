@@ -56,5 +56,11 @@ Snake.prototype={
   },
   goWest:function(){
     this.head=this.head.goWest();
+  },
+  setHead:function(position){
+    console.log("Snake.setHead("+JSON.stringify(position)+") has been called.");
+    console.log(position);
+    this.head =position;
+    console.log(this.head);
   }
 }

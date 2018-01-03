@@ -33,29 +33,19 @@ for (var i = 109; i <= 118; i++) {
   maze222.unshift(new Position(i,59,east));
 }
 
-
-
-
-
-
-
-
-
-
-
 // internal maze structure
-for (var i = 20+30; i <=29+30 ; i++) {
+for (var i = 50; i <=59 ; i++) {
   maze222.unshift(new Position(i,20,east));
 }
 for (var i = 21; i <=29 ; i++) {
   maze222.unshift(new Position(29+30,i,east));
 }
-for (var i = 20+30; i <=29+30 ; i++) {
+for (var i = 50; i <=59 ; i++) {
   maze222.unshift(new   Position(i,29,east));
 }
 for (var i = 29; i <=38 ; i++) {
   maze222.unshift(new Position(20+30,i,east));
 }
-for (var i = 20+30; i <=29+30 ; i++) {
+for (var i = 50; i <=59; i++) {
   maze222.unshift(new Position(i,38,east));
 }

@@ -17,6 +17,7 @@ const animateSnake=function() {
     game.createFood();
     drawFood(game.getFood());
   }
+  game.isSnakeOutOfArena();
   if(game.gameOver()){
     newGame();
   }

@@ -50,6 +50,8 @@ Position.prototype.getCoord=function() {
   return [this.x,this.y];
 }
 
+Position.prototype.getX=function(){return this.x}
+Position.prototype.getY=function(){return this.y}
 Position.prototype.goNorth=function(){
   return new Position(this.x,this.y,"north");
 }
