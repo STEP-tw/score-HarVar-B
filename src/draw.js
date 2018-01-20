@@ -12,7 +12,6 @@ const drawGrids=function(numberOfRows,numberOfCols) {
 }
 
 const paintCell=function(pos,color) {
-  //console.log("paintCell() has been called for :",pos);
   let cell=document.getElementById(pos.getCoord().join("_"));
   if(cell)
     cell.className=color;
@@ -49,8 +48,14 @@ const updateScore=function(){
   document.querySelector('#scoreValue').innerText = score;
 }
 
+
 const drawMaze = function(maze){
-  maze.forEach(function(pos){
+  maze.getPositions().forEach(function(pos){
     paintCell(pos,"maze");
   })
+}
+
+const askForAName=function(){
+  let name = prompt("enter a name for maze.");
+  return name;
 }

@@ -30,7 +30,6 @@ Snake.prototype={
     let sHead = this.head;
     let sBody = this.body;
     let result=sBody.some(function(other){return sHead.isSameCoordAs(other)});
-    // result && console.log("snake hit itself.");
     return result;
   },
   isGoingSouth:function(){
@@ -58,9 +57,6 @@ Snake.prototype={
     this.head=this.head.goWest();
   },
   setHead:function(position){
-    console.log("Snake.setHead("+JSON.stringify(position)+") has been called.");
-    console.log(position);
     this.head =position;
-    console.log(this.head);
   }
 }

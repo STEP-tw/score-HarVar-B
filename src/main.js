@@ -5,7 +5,6 @@ let numberOfCols=120;
 let animator=undefined;
 
 const animateSnake=function() {
-
   let details=game.move();
   paintBody(details.oldHead);
   unpaintSnake(details.oldTail);

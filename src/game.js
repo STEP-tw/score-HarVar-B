@@ -7,7 +7,7 @@ const Game=function(topLeft,bottomRight) {
 }
 
 Game.prototype.snakeHitMaze = function(maze){
-  return maze.some(function(pos){
+  return maze.getPositions().some(function(pos){
     return pos.isSameCoordAs(this.snake.getHead());
   })
 }
@@ -15,9 +15,7 @@ Game.prototype.snakeHitMaze = function(maze){
 Game.prototype.snakeHitNorth = function(){
   let sHead = this.snake.getHead();
   let sHeadCoOrd = sHead.getCoord();
-  console.log(sHeadCoOrd);
   let sHeadDirection = sHead.getDirection();
-  console.log(sHeadDirection);
   let arenaHeight = this.bottomRight.getY();
   if(sHeadCoOrd[1]<0){
     this.snake.setHead(new Position(sHeadCoOrd[0],sHeadCoOrd[1]+arenaHeight,sHeadDirection));
@@ -27,9 +25,7 @@ Game.prototype.snakeHitNorth = function(){
 Game.prototype.snakeHitSouth = function(){
   let sHead = this.snake.getHead();
   let sHeadCoOrd = sHead.getCoord();
-  console.log(sHeadCoOrd);
   let sHeadDirection = sHead.getDirection();
-  console.log(sHeadDirection);
   let arenaHeight = this.bottomRight.getY();
   if(sHeadCoOrd[1]>arenaHeight){
     this.snake.setHead(new Position(sHeadCoOrd[0],sHeadCoOrd[1]-arenaHeight-1,sHeadDirection));
@@ -39,9 +35,7 @@ Game.prototype.snakeHitSouth = function(){
 Game.prototype.snakeHitEast = function(){
   let sHead = this.snake.getHead();
   let sHeadCoOrd = sHead.getCoord();
-  console.log(sHeadCoOrd);
   let sHeadDirection = sHead.getDirection();
-  console.log(sHeadDirection);
   let arenaWidth = this.bottomRight.getX();
   if(sHeadCoOrd[0]>arenaWidth){
     this.snake.setHead(new Position(sHeadCoOrd[0]-arenaWidth-1,sHeadCoOrd[1],sHeadDirection));
@@ -51,9 +45,7 @@ Game.prototype.snakeHitEast = function(){
 Game.prototype.snakeHitWest = function(){
   let sHead = this.snake.getHead();
   let sHeadCoOrd = sHead.getCoord();
-  console.log(sHeadCoOrd);
   let sHeadDirection = sHead.getDirection();
-  console.log(sHeadDirection);
   let arenaWidth = this.bottomRight.getX();
   if(sHeadCoOrd[0]<0){
     this.snake.setHead(new Position(sHeadCoOrd[0]+arenaWidth,sHeadCoOrd[1],sHeadDirection));
@@ -85,7 +77,6 @@ Game.prototype.turnRight=function() {
 
 Game.prototype.grow=function() {
   let growthFactor=this.food.getGrowthFactor();
-  console.log(growthFactor);
   return this.snake.grow(growthFactor);
 }
 
@@ -106,7 +97,6 @@ Game.prototype.hasSnakeEatenFood=function() {
 }
 
 Game.prototype.createFood=function() {
-  console.log(this.bottomRight);
   let position = undefined;
   do{
     position=generateRandomPosition(this.bottomRight.x,this.bottomRight.y);
@@ -114,7 +104,7 @@ Game.prototype.createFood=function() {
   while(this.snake.getBody().some(function(part){
     return position.isSameCoordAs(part);
   })
-  || maze222.some(function(part){
+  || maze222.getPositions().some(function(part){
     return position.isSameCoordAs(part);
   }))
   let random=generateRandomNumberBetween(0,10);
@@ -156,7 +146,6 @@ Game.prototype.goWest=function(){
 }
 
 Game.prototype.gameOver = function(){
-  let result=game.snakeHitWall(this.snake)|| this.snake.hitItself();
-  result = result || game.snakeHitMaze(maze222);
-  return result;
+  let result = game.snakeHitMaze(maze222)|| this.snake.hitItself();
+    return result;
 }
